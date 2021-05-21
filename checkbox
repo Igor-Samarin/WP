@@ -1,0 +1,136 @@
+//1. Проверка checkbox на checked - метод .is()
+<input type="checkbox" id="checkbox_check">
+$('#checkbox_check').on('click', function () {
+    if ( $(this).is(':checked') ) {
+        // checkbox checked 
+    } else {
+        // checkbox unchecked 
+    }
+})
+
+//2. Проверка checkbox/radio на состояние (выбран/не выбран) - метод .prop()
+//Данный код возвращает true или false при нажатии на чекбокс или радио input.
+$('#checkbox_check').on('click', function () {
+    let checkboxStatus = $(this).prop('checked')
+    console.log(checkboxStatus)
+})
+
+//Чтобы сразу выполнять необходимые действия, добавим оператор if
+$('#checkbox_check').on('click', function () {
+    if ( $(this).prop('checked') === true ) {
+        // ваш код 
+    }
+})
+
+//2.1 Отметить / снять checked
+// добавим checked 
+$('#checkbox_check').prop('checked', true)
+// удалим состояние checked 
+$('#checkbox_check').prop('checked', false)
+// добавим состояние checked для всех чекбоксов 
+$('input:checkbox').prop('checked', true);
+// удалим checked для всех чекбоксов 
+$('input:checkbox').prop('checked', false);
+
+//2.2 Деактивация чекбокса
+// отключаем чекбокс 
+$('#checkbox_check').prop('disabled', true)
+// включаем чекбокс 
+$('#checkbox_check').prop('disabled', false)
+
+//3. Имитация клика по чекбоксу
+$('#checkbox_check').trigger('click');
+
+//4. Найти все выбранные checkbox / radio - селектор 
+<label>
+    <input type="radio" value="HTML" name="radio input">
+    HTML
+</label>
+<label>
+    <input type="radio" value="CSS" name="radio input">
+    CSS
+</label>
+<label>
+    <input type="radio" value="JavaScript" name="radio input">
+    JavaScript
+</label>
+<div id="outputField"></div>
+
+$('input').on('click', function() {
+    $('#outputField').text('Вы выбрали ' + $('input:checked').val() );
+});
+
+//Пример с input type="checkbox", но это также отлично работает и с radio input.
+$('input').on('click', function () {
+    $(container).html('');
+
+    $('input:checked').each(function () {
+        $(container).append( $(this).val() + " " );
+    });
+});
+
+//5. Подсчёт количества выбранных чекбоксов
+<input type="checkbox" value="1" name="name" class="count-checked">
+<input type="checkbox" value="2" name="name" class="count-checked">
+<input type="checkbox" value="3" name="name" class="count-checked">
+<input type="checkbox" value="4" name="name" class="count-checked">
+<div id="outputField"></div>
+
+const myCount = function() {
+    $('#outputField').html( $('.count-checked:checked').length + ' чекбоксов выбрано вами.' );
+};
+myCount();
+$('input').on('click', myCount);
+
+//6. Запрет отправки формы без выбора чекбокса
+<form>
+    <input type='text'>
+    <input type='email'>
+    <input type="checkbox" id="cheched">
+    <button class="form__submit" type='submit' disabled >Нажать</button>
+</form>
+$('#cheched').on('change', function () {
+    if ( $('#cheched').prop('checked') ) {
+        $('.form__submit').attr('disabled', false);
+    } else {
+        $('.form__submit').attr('disabled', true);
+    }
+});
+
+//7. Массив значений выбранных чекбоксов
+<input type="checkbox" name="technology" value="PHP" class="array-checked">
+<input type="checkbox" name="technology" value="JS" class="array-checked">
+<input type="checkbox" name="technology" value="CSS" class="array-checked">
+
+$('.array-checked').on('change', function () {
+    const arrayChecked = [];
+    $('.array-checked:checked').each(function() {
+        arrayChecked.push($(this).val());
+    });
+    console.log(arrayChecked);
+});
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
